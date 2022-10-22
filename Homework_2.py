@@ -1,3 +1,4 @@
+#HOMEWORK_2
 # 1. Construct an integer from the string "123"
 print ('String "123" is converted into: ', int(123), type(int('123')), '\n')
 
