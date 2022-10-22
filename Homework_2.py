@@ -51,4 +51,4 @@ print ('The number of digits in number is: ', counter, '\n')
 # 9. *Print the digits in reverse order
 number = int(input('Please, input number: '))
 number_str = str(number)
-print ('The number of digits in number is: ', number_str[::-1])
+print ('The reverse order of number is: ', number_str[::-1])
