@@ -1,4 +1,4 @@
-#HOMEWORK 1
+#HOMEWORK_1
 # Excercise 1. Write a Python-script that displays the message “Hello world”.
 print ('Hello World\n')
 
