@@ -41,11 +41,8 @@ print (f'The sum of the number digits is: {sum}\n')
 
 # 8. *Determine the number of digits in a number
 number = int(input('Please, enter number: '))
-number_str = str(number)
-counter = 0
-for i in number_str:
-    counter += 1
-print (f'The number of digits in number is: {counter}\n')
+number_lenth = len(str(number))
+print (f'The number of digits in number is: {number_lenth}\n')
 
 # 9. *Print the digits in reverse order
 number = int(input('Please, enter number: '))
