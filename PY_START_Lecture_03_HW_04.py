@@ -31,5 +31,5 @@ b = int(input('Please, enter triangle side b: '))
 c = int(input('Please, enter triangle side c: '))
 check_for_exist = (a + b)> c and (a + c) > b and (b + c)> a and\
                   print('Triangle exists')
-check_for_exist = ((a + b)> c and (a + c) > b and (b + c)> a) or\
+check_for_not_exist = ((a + b)> c and (a + c) > b and (b + c)> a) or\
                   print('Triangle doesn`t exist')
