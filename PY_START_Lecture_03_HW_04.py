@@ -8,17 +8,18 @@ num_flat = int(input('Please, enter flat number: '))
 check_num_flat = (num_flat > 1 and num_flat < 144) or\
                  print ('There is no such flat number in this house')
 
-num_entrance = not check_num_flat or print ('The number of entrance is: ', num_flat//36 + 1)
+num_entrance = not check_num_flat or print ('The number of entrance is: ', (num_flat - 1)//36 + 1)
 
-num_floor_1_3th = not check_num_flat or num_flat%36//4 == 0 or\
+
+num_floor_1_8th = not check_num_flat or num_flat%36//4 == 0 or\
                   print ('The number of floor is: ', num_flat%36//4 + 1)
-num_floor_4th = not check_num_flat or num_flat%36//4 != 0 or\
-                  print ('The number of floor is: ', num_flat%36//4)
+num_floor_9th = not check_num_flat or num_flat%36//4 != 0 or\
+                  print ('The number of floor is: 9')
 
 num_floor_flat_1_3 = not check_num_flat or not num_flat%4 or\
                 print ('The number of flat on the floor is: ', num_flat%4, '\n')
 num_floor_flat_4 = not check_num_flat or num_flat%4 or\
-                print ('The number of flat on the floor is: ', 4, '\n')
+                print ('The number of flat on the floor is: 4', '\n')
 
 
 # 2. Написати програму, яка буде повертати для заданого року кількість днів. Рік є високосним,
