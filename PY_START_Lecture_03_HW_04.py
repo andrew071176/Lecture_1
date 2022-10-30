@@ -11,14 +11,14 @@ check_num_flat = (num_flat >= 1 and num_flat <= 144) or\
 num_entrance = not check_num_flat or print ('The number of entrance is: ', (num_flat - 1)//36 + 1)
 
 
-num_floor_1_8th = not check_num_flat or num_flat%36//4 == 0 or\
-                  print ('The number of floor is: ', (num_flat - 1)%36//4 + 1)
-num_floor_9th = not check_num_flat or num_flat%36//4 != 0 or\
+num_floor_1th = not check_num_flat or num_flat%36//4 != 0 or\
                   print ('The number of floor is: 1')
+num_floor_2_9th = not check_num_flat or num_flat%36//4 == 0 or\
+                  print ('The number of floor is: ', (num_flat - 1)%36//4 + 1)
 
-num_floor_flat_1_3 = not check_num_flat or not num_flat%4 or\
+num_floor_flat_1_3th = not check_num_flat or not num_flat%4 or\
                 print ('The number of flat on the floor is: ', num_flat%4, '\n')
-num_floor_flat_4 = not check_num_flat or num_flat%4 or\
+num_floor_flat_4th = not check_num_flat or num_flat%4 or\
                 print ('The number of flat on the floor is: 4', '\n')
 
 
