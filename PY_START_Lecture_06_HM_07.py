@@ -52,8 +52,10 @@ print ('The shortest Vovochka`s word is: ', min(list_text, key = len), '\n')
 # Наприклад <div id="rcnt" style="clear:both;position:relative;zoom:1">
 text = '''<div id="rcnt" style="clear:both;position:relative;zoom:1">'''
 import re
-pre_teglist = re.findall(r'</.*>', text)
-final_teglist = pre_teglist + list(map(lambda i: i.replace('/', ''), pre_teglist)) + ['<', '>']
+pre_teglist = list(set(re.findall(r'</.*>', text)))
+final_teglist = pre_teglist +\
+                list(map(lambda i: i.replace('/', ''), pre_teglist)) +\
+                ['<', '>']
 for teg in final_teglist:
     text = text.replace(teg,'')
 print ('The text without tegs is:\n', text)
