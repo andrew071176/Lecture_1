@@ -1,7 +1,7 @@
 # 1. Напишіть програму, яка порахує скільки літер «b» у введеному рядку тексту.
 text = input('Please, enter the text: ')
 letter_x = input('Please, enter letter to be found in the text: ')
-print (sum (int(letter_x == letter) for letter in text), '\n')
+print (text.count(letter_x), '\n')
 
 # 2. Користувач вводить з клавіатури ім'я людини. Написати програму для перевірки введеного ім'я
 # на валідність (мається на увазі, що, наприклад, в імені людини не може бути цифр,
@@ -18,7 +18,7 @@ print ('The symbol codes sum of the string is: ', sum (ord(symbol) for symbol in
 # 4. Виведіть на екран 10 рядків із значенням числа Pi. У першому рядку має бути 2 знаки після коми,
 # у другому 3 і так далі.
 import math
-print (*(round(math.pi, i) for i in range(2, 12)), sep = '\n')
+print (*[f'{round(math.pi, i)}' for i in range(2, 12)], sep = '\n')
 print()
 
 # 5. Вводиться з клавіатури користувачем текст. Знайти в ньому найдовше слово та вивести його на екран.
@@ -50,7 +50,7 @@ print ('The shortest Vovochka`s word is: ', min(list_text, key = len), '\n')
 # перший тег відкриває, а другий закриває.
 # - тег у собі може містити купу додаткової інформації.
 # Наприклад <div id="rcnt" style="clear:both;position:relative;zoom:1">
-text = '''<div id="rcnt" style="clear:both;position:relative;zoom:1">'''
+text = '''<div <id="rcnt" style="clear:both;position:relative;zoom:1">'''
 import re
 pre_teglist = list(set(re.findall(r'</.*>', text)))
 final_teglist = pre_teglist +\
