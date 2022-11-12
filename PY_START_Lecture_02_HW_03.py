@@ -17,12 +17,8 @@ check = bool(number == 0) or print ('You`ve entered not Zero\n')
 
 # 4. Write a Python program to check if a given number is Even or Odd.
 number = float(input('Please, enter number: '))
-check = bool(number%2 != 0) or print ('You`ve entered an Even number\n')
-check = bool(number%2 == 0) or print ('You`ve entered an Odd number\n')
-
-# number = float(input('Please, enter number: '))
-# check = number%2 or print ('You`ve entered an Odd number\n')
-# check = not number%2 or print ('You`ve entered an Even number\n')
+check = number%2 or print ('You`ve entered an Odd number\n')
+check = not number%2 or print ('You`ve entered an Even number\n')
 
 # 5. Write a Python program to find largest number among three numbers
 # entered by user.
