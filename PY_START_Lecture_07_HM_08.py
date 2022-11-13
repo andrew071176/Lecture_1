@@ -3,7 +3,7 @@
 dict_week_days = {1: 'Sunday', 2: 'Monday', 3: 'Tuesday', 4: 'Wednesday',
                  5: 'Thursday', 6: 'Friday', 7: 'Saturday'}
 num_day = int(input('Please, number of the week`s day: '))
-print ('The name of the week`s day is: ', dict_week_days[num_day], '\n')
+print ('The name of the week`s day is: ', dict_week_days.get(num_day), '\n')
 
 # 2. Опишіть кота (домашня тварина) на основі словника.
 dict_cat = {'sex': 'male',
@@ -28,13 +28,13 @@ print ('The letters frequency in the text is:\n', dict_letters, '\n')
 set_string_1 = set(input('Please, enter string 1: '))
 set_string_2 = set(input('Please, enter string 2: '))
 print ('The same_letters are: ',
-       [letter for letter in set_string_1&set_string_2 if letter.isalpha()], '\n')
+       *[letter for letter in set_string_1&set_string_2 if letter.isalpha()], '\n')
 
 # 5. Напишіть програму, яка згенерує два списки. Один із числами кратними 3, інший із числами кратними 5.
 list_multiple_of_3 = list(num*3 for num in range (20))
 list_multiple_of_5 = list(num*5 for num in range (10))
 
 # 6. Створіть список із числами, які є в обох списках.
-list_multiple_of_3 = list(num*3 for num in range (20))
-list_multiple_of_5 = list(num*5 for num in range (10))
+list_multiple_of_3 = [num*3 for num in range (20)]
+list_multiple_of_5 = [num*5 for num in range (10)]
 list_multiple_of_3_and_5 = list(set(list_multiple_of_3)&set(list_multiple_of_5))
