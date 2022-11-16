@@ -89,23 +89,26 @@
 # 6. Напишіть функцію, яка переводить ціле число з римського запису до десяткового.
 # Наприклад: XXII -> 22
 # Докладніше: https://en.wikipedia.org/wiki/Roman_numerals
-def f6() -> int:
-    dict_num_rome = {'I': ' 1 ', 'IV': ' 4 ', 'V': ' 5 ', 'IX': ' 9 ', 'X': ' 10 ',
-                     'XL': ' 40 ', 'L': ' 50 ', 'XC': ' 90 ', 'C': ' 100 ',
-                     'CD': ' 400 ', 'D': ' 500 ', 'CM': ' 900 ', 'M': ' 1000 '}
-
-    num_rome = input('Please, enter rome number: ')
-    # while (item for item in num_rome not in 'IVX'):
-    #     num_rome = input('Please, enter correct rome number: ')
-
-    num_arabic = num_rome
-    for lenth in (2, 1):
-        for key in dict_num_rome:
-            if len(key) == lenth and key in num_arabic:
-                num_arabic = num_arabic.replace(key, dict_num_rome[key]) #arabic numbers
-
-    print (f'The rome number {num_rome} converted into arabic num is:',
-           sum (int(i) for i in num_arabic.split()))
-    # print ('num_arabic = ', num_arabic)
-
-f6()
+# def f6() -> int:
+#     dict_num_roman = {'I': ' 1 ', 'IV': ' 4 ', 'V': ' 5 ', 'IX': ' 9 ', 'X': ' 10 ',
+#                      'XL': ' 40 ', 'L': ' 50 ', 'XC': ' 90 ', 'C': ' 100 ',
+#                      'CD': ' 400 ', 'D': ' 500 ', 'CM': ' 900 ', 'M': ' 1000 '}
+# 
+#     marker = True
+#     while marker:
+#         num_roman = (input('Please, enter roman number: ')).upper()
+#         for item in num_roman:
+#             if item not in dict_num_roman:
+#                 print ('You`ve entered incorrect roman number symbols')
+#                 marker = True
+#                 break
+#             marker = False
+# 
+#     num_arabic = num_roman
+#     for lenth in (2, 1):
+#         for key in dict_num_roman:
+#             if len(key) == lenth and key in num_arabic:
+#                 num_arabic = num_arabic.replace(key, dict_num_roman[key]) #arabic numbers
+# 
+#     print (f'The roman number {num_roman} converted into arabic number is:',
+#            sum (int(i) for i in num_arabic.split()))
