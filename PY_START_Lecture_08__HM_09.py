@@ -37,10 +37,10 @@ def f5() -> str:
         try:
             float(num)
         except ValueError:
-            print('You`ve entered incorrect number')
+            print('You`ve entered incorrect sum')
         else:
             if not 0 <= float(num) <= 10**10:
-                print('You`ve entered incorrect number range')
+                print('You`ve entered incorrect sum range')
             else:
                 marker = False
     print()
