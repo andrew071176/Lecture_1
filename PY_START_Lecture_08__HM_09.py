@@ -58,7 +58,7 @@ def f5() -> str:
     num_list = list(num_str.split(' '))               #list of digit divisions
 
     #Putting numbers in words into string
-    dict_division = {3: 'million(s) ', 2: 'thousand(s) ', 1: 'dollar(s) ', 0: 'cent(s) '}
+    dict_division = {3: 'million ', 2: 'thousand ', 1: 'dollar(s) ', 0: 'cent(s) '}
     number_str = ''
     for division in range (0, len(num_list)):
         if len(num_list[division]) == 3:
