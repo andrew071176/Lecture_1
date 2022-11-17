@@ -80,7 +80,7 @@ def f5() -> str:
         else:
             number_str += (dict_units[num_list[division][0]] + ' ')
 
-        #Adding number divisions names
+        #Adding number divisions names into string
         if len(num_list) - 1 - division >= 2:
             number_str += dict_division[num_list.index(num_list[len(num_list) - 1 - division])]*\
                       bool(int(num_list[division]))
