@@ -30,21 +30,7 @@ def f4 (text: str) -> int:
 # Наприклад:
 # > 123,34
 # > one hundred twenty three dollars thirty four cents
-def f5() -> str:
-    marker = True
-    while marker:
-        num = input('Please, enter sum in USD no more than 1 billion: ')
-        try:
-            float(num)
-        except ValueError:
-            print('You`ve entered incorrect sum')
-        else:
-            if not 0 <= float(num) <= 10**10:
-                print('You`ve entered incorrect sum range')
-            else:
-                marker = False
-    print()
-
+def f5(num: float) -> str:
     dict_units = {'0': '', '00': '', '1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five',
                   '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine',
                   '10': 'ten', '11': 'eleven', '12': 'twelve', '13': 'thirteen', '14': 'fourteen', '15': 'fifteen',
@@ -98,21 +84,12 @@ def f5() -> str:
 # 6. Напишіть функцію, яка переводить ціле число з римського запису до десяткового.
 # Наприклад: XXII -> 22
 # Докладніше: https://en.wikipedia.org/wiki/Roman_numerals
-def f6() -> int:
+def f6(num_roman: str) -> int:
     dict_num_roman = {'I': ' 1 ', 'IV': ' 4 ', 'V': ' 5 ', 'IX': ' 9 ', 'X': ' 10 ',
                      'XL': ' 40 ', 'L': ' 50 ', 'XC': ' 90 ', 'C': ' 100 ',
                      'CD': ' 400 ', 'D': ' 500 ', 'CM': ' 900 ', 'M': ' 1000 '}
 
-    marker = True
-    while marker:
-        num_roman = (input('Please, enter roman number: ')).upper()
-        for item in num_roman:
-            if item not in dict_num_roman:
-                print ('You`ve entered incorrect roman number symbol(s)')
-                marker = True
-                break
-            marker = False
-
+    print (num_roman)
     num_arabic = num_roman
     for lenth in (2, 1):
         for key in dict_num_roman:
