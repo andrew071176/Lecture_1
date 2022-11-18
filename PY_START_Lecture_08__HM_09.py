@@ -49,7 +49,7 @@ def f5(num: float) -> str:
     for division in range (0, len(num_list)):
         if len(num_list[division]) == 3:
             number_str += (dict_units[num_list[division][0]] +\
-                           ' hundred(s) '*bool(int(num_list[division][0])))
+                           ' hundred '*bool(int(num_list[division][0])))
             if int(num_list[division][1:]) in dict_units:
                 number_str += (dict_units[num_list[division][1:]] + ' ')
             else:
