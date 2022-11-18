@@ -92,8 +92,8 @@ def f5() -> str:
             else:
                 number_str += '00 cents'
 
-    #print result
-    print (f'The amount of USD {num} in words are:\n', ' '.join(number_str.split()), sep = '')
+    #return result
+    return f'The amount of USD {num} in words are:' + '\n' + ' '.join(number_str.split())
 
 # 6. Напишіть функцію, яка переводить ціле число з римського запису до десяткового.
 # Наприклад: XXII -> 22
@@ -119,5 +119,5 @@ def f6() -> int:
             if len(key) == lenth and key in num_arabic:
                 num_arabic = num_arabic.replace(key, dict_num_roman[key]) #arabic numbers
 
-    print (f'The roman number {num_roman} converted into arabic number is:',
-           sum (int(i) for i in num_arabic.split()))
+    return f'The roman number {num_roman} converted into arabic number is: ' \
+           f'{sum (int(i) for i in num_arabic.split())}'
