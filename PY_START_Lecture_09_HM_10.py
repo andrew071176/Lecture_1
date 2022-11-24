@@ -9,7 +9,7 @@
 # Послідовність користувач вводить з клавіатури у вигляді рядка. Наприклад, користувач вводить
 # рядок 0,5,10,15,20,25 та відповіддю програми має бути число 30.
 #Function for checking arithmetic progression
-def f1_1(list_1: list) -> int:
+def f1_1(list_1: list) -> int or bool:
     difference = list_1[1] - list_1[0]
     for i in range (1, len(list_1)):
         if list_1[i] - list_1[i-1] == difference:
@@ -19,7 +19,7 @@ def f1_1(list_1: list) -> int:
             return False
 
 #Function for checking geometric progression (multiplication)
-def f1_2(list_1: list) -> int:
+def f1_2(list_1: list) -> int or bool:
     if list_1[0] != 0:
         multiplier = int(f'{list_1[1]/list_1[0]:,.0f}')
         for i in range (1, len(list_1)):
@@ -30,7 +30,7 @@ def f1_2(list_1: list) -> int:
                 return False
 
 #Function for checking geometric progression (exponentiation 2)
-def f1_3(list_1: list) -> int:
+def f1_3(list_1: list) -> int or bool:
     for i in range (len(list_1)):
         if (i + 1)**2 == list_1[i]:
             if i == len(list_1) - 1:
@@ -39,7 +39,7 @@ def f1_3(list_1: list) -> int:
             return False
 
 #Function for checking geometric progression (exponentiation 3)
-def f1_4(list_1: list) -> int:
+def f1_4(list_1: list) -> int or bool:
     for i in range (len(list_1)):
         if (i + 1)**3 == list_1[i]:
             if i == len(list_1) - 1:
@@ -47,7 +47,7 @@ def f1_4(list_1: list) -> int:
         else:
             return False
 
-def f1(f1_1, f1_2, f1_3, f1_4, list_1: list) -> int or bool:
+def f1(f1_1, f1_2, f1_3, f1_4, list_1: list) -> int or str:
     if f1_1(list_1):
         return f1_1(list_1)
     elif f1_2(list_1):
