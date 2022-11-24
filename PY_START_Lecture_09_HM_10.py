@@ -47,7 +47,7 @@ def f1_4(list_1: list) -> int:
         else:
             return False
 
-def f1(list_1: list) -> int:
+def f1(f1_1, f1_2, f1_3, f1_4, list_1: list) -> int or bool:
     if f1_1(list_1):
         return f1_1(list_1)
     elif f1_2(list_1):
@@ -59,8 +59,8 @@ def f1(list_1: list) -> int:
     else:
         return ('Error')
 
-list_num = list(map(int, list(input('Please, enter sequence of numbers: ').replace(',', '').split())))
-print (f1(list_num))
+list_num = list(map(int, list(input('Please, enter sequence of numbers: ').replace(',', ' ').split())))
+print (f1(f1_1, f1_2, f1_3, f1_4, list_num))
 
 # 2. Число-паліндром з обох сторін (справа ліворуч і ліворуч) читається однаково.
 # Найбільше число-паліндром, одержане множенням двох двозначних чисел: 9009 = 91 × 99.
