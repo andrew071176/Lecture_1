@@ -49,18 +49,18 @@ def f1_4(list_1: list) -> int:
 
 def f1(list_1: list) -> int:
     if f1_1(list_1):
-        print (f1_1(list_1))
+        return f1_1(list_1)
     elif f1_2(list_1):
-        print (f1_2(list_1))
+        return f1_2(list_1)
     elif f1_3(list_1):
-        print (f1_3(list_1))
+        return f1_3(list_1)
     elif f1_4(list_1):
-        print (f1_4(list_1))
+        return f1_4(list_1)
     else:
-        print ('Error')
+        return ('Error')
 
 list_num = list(map(int, list(input('Please, enter sequence of numbers: ').replace(',', '').split())))
-f1(list_num)
+print (f1(list_num))
 
 # 2. Число-паліндром з обох сторін (справа ліворуч і ліворуч) читається однаково.
 # Найбільше число-паліндром, одержане множенням двох двозначних чисел: 9009 = 91 × 99.
@@ -72,3 +72,4 @@ def f2() -> str:
             for j in range (999, 100, -1):
                 if not i%j and len(str(int(i/j))) == 3:
                     return f'Max 6-digit palindrome: {i}\nMultipliers: {j}, {int(i/j)}'
+print (f2())
