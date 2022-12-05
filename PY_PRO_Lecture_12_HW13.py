@@ -1,6 +1,6 @@
 # 1. Створіть клас, що описує людину (створіть метод, що виводить інформацію про людину).
 class Person:
-    def __init__(self, name: str, surname: str, id: str):
+    def __init__(self, name: str, surname: str, id: int):
         self.name = name
         self.surname = surname
         self.id = id
@@ -13,7 +13,7 @@ class Person:
 
 # 2) На його основі створіть клас Студент (перевизначте метод виведення інформації).
 class Student(Person):
-    def __init__(self, name: str, surname: str, id: str, group: str):
+    def __init__(self, name: str, surname: str, id: int, group: str):
         super().__init__(name, surname, id)
         self.group = group
 
@@ -28,16 +28,16 @@ class Student(Person):
 # Визначте для Групи метод str() для повернення списку студентів у вигляді рядка.
 class Group:
     def __init__(self):
-        student_01 = Student('Ivan', 'Ivanov', '001', 'Python')
-        student_02 = Student('Petr', 'Petrov', '002', 'Python')
-        student_03 = Student('Sergey', 'Sergeyev', '003', 'Python')
-        student_04 = Student('Pavel', 'Pavlov', '004', 'Python')
-        student_05 = Student('Anton', 'Antonov', '005', 'Python')
-        student_06 = Student('Yana', 'Yanovna', '006', 'Java')
-        student_07 = Student('Svetlana', 'Svetlova', '007', 'Java')
-        student_08 = Student('Yevgeniya', 'Yevgenova', '008', 'Java')
-        student_09 = Student('Liubov', 'Liubimova', '009', 'Java')
-        student_10 = Student('Liliya', 'Lilova', '010', 'Java')
+        student_01 = Student('Ivan', 'Ivanov', 1, 'Python')
+        student_02 = Student('Petr', 'Petrov', 2, 'Python')
+        student_03 = Student('Sergey', 'Sergeyev', 3, 'Python')
+        student_04 = Student('Pavel', 'Pavlov', 4, 'Python')
+        student_05 = Student('Anton', 'Antonov', 5, 'Python')
+        student_06 = Student('Yana', 'Yanovna', 6, 'Java')
+        student_07 = Student('Svetlana', 'Svetlova', 7, 'Java')
+        student_08 = Student('Yevgeniya', 'Yevgenova', 8, 'Java')
+        student_09 = Student('Liubov', 'Liubimova', 9, 'Java')
+        student_10 = Student('Liliya', 'Lilova', 10, 'Java')
 
         self.students_list = [student_01, student_02, student_03, student_04, student_05,
                               student_06, student_07, student_08, student_09, student_10]
@@ -83,8 +83,8 @@ class Group:
         return '\nStudents list:\n' + '-'*30 + '\n' +\
                '\n'.join(map(str, self.students_list))
 
-student_1 = Student('Ivan', 'Ivanov', '001', 'Python')
-student_11 = Student('Maksim', 'Masksimov', '011', 'C++')
+student_1 = Student('Ivan', 'Ivanov', 1, 'Python')
+student_11 = Student('Maksim', 'Masksimov', 11, 'C++')
 
 group_1 = Group()
 print(group_1.add_student(student_11))
