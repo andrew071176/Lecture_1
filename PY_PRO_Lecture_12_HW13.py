@@ -42,7 +42,7 @@ class Group:
         self.students_list = [student_01, student_02, student_03, student_04, student_05,
                               student_06, student_07, student_08, student_09, student_10]
 
-    def add_student(self, student: str):
+    def add_student(self, student: Student):
         self.student = student
         for element in self.students_list:
             if self.student.get_student_data_list()[1] == element.get_student_data_list()[1]:
@@ -54,7 +54,7 @@ class Group:
                f"{' '.join(map(str, (self.student.get_student_data_list())))}" \
                f"{') is successfully enrolled'}"
 
-    def removal_student(self, student: str):
+    def removal_student(self, student: Student):
         self.student = student
         for element in self.students_list:
             if self.student.get_student_data_list()[1] == element.get_student_data_list()[1]:
@@ -67,7 +67,7 @@ class Group:
                        f"{' '.join(map(str, (self.student.get_student_data_list())))}" \
                        f"{') isn`t removed (not found)'}"
 
-    def search_student(self, student: str):
+    def search_student(self, student: Student):
         self.student = student
         for element in self.students_list:
             if self.student.get_student_data_list()[1] == element.get_student_data_list()[1]:
