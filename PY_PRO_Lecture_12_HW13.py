@@ -1,6 +1,6 @@
 # 1. Створіть клас, що описує людину (створіть метод, що виводить інформацію про людину).
 class Person:
-    def __init__(self, name: str, surname: str, id: int):
+    def __init__(self, name: str, surname: str, id: str):
         self.name = name
         self.surname = surname
         self.id = id
@@ -13,7 +13,7 @@ class Person:
 
 # 2) На його основі створіть клас Студент (перевизначте метод виведення інформації).
 class Student(Person):
-    def __init__(self, name: str, surname: str, id: int, group: str):
+    def __init__(self, name: str, surname: str, id: str, group: str):
         super().__init__(name, surname, id)
         self.group = group
 
@@ -37,7 +37,7 @@ class Group:
         student_07 = Student('Svetlana', 'Svetlova', '007', 'Java')
         student_08 = Student('Yevgeniya', 'Yevgenova', '008', 'Java')
         student_09 = Student('Liubov', 'Liubimova', '009', 'Java')
-        student_10 = Student('Liliya', 'Lilova', '010', 'Python')
+        student_10 = Student('Liliya', 'Lilova', '010', 'Java')
 
         self.students_list = [student_01, student_02, student_03, student_04, student_05,
                               student_06, student_07, student_08, student_09, student_10]
