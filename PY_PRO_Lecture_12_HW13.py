@@ -25,7 +25,6 @@ class Group:
         self.group_title = group_title
         self.max_students = max_students
 
-    #adding by id
     def add_student(self, student: Student, students_list: list):
         if len(students_list) < self.max_students:
             for element in students_list:
@@ -46,7 +45,6 @@ class Group:
             if element.surname == surname:
                 list_students_found.append(element)
         return list_students_found
-
 
     def __str__(self):
         return f"\n{'Students list:'}\n{'-'*30}\n" + \
@@ -76,7 +74,6 @@ group_Python.add_student(student_06, students_list)
 group_Python.add_student(student_07, students_list)
 group_Python.add_student(student_08, students_list)
 group_Python.add_student(student_09, students_list)
-
 
 student_011 = Student('Maksim', 'Ivanov', 11, 31)
 student_001 = Student('Ivan', 'Ivanov', 1, 21)
