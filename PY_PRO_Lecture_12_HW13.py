@@ -26,10 +26,11 @@ class Group:
         self.max_students = max_students
         self.students_list = []
 
+    # adding_by_id
     def add_student(self, student: Student):
         if len(self.students_list) < self.max_students:
             for element in self.students_list:
-                if student == element:
+                if student.id == element.id:
                     break
             self.students_list.append(student)
 
