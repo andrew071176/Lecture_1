@@ -24,24 +24,25 @@ class Group:
     def __init__(self, group_title: str, max_students = 10):
         self.group_title = group_title
         self.max_students = max_students
+        self.students_list = []
 
-    def add_student(self, student: Student, students_list: list):
-        if len(students_list) < self.max_students:
-            for element in students_list:
+    def add_student(self, student: Student):
+        if len(self.students_list) < self.max_students:
+            for element in self.students_list:
                 if student == element:
                     break
-            students_list.append(student)
+            self.students_list.append(student)
 
     #removal by id
-    def removal_student(self, student: Student, students_list: list):
-        for element in students_list:
+    def removal_student(self, student: Student):
+        for element in self.students_list:
             if student.id == element.id:
-                students_list.remove(element)
+                self.students_list.remove(element)
 
     #searching by surname
-    def search_student(self, surname: str, students_list: list) -> Student:
+    def search_student(self, surname: str) -> Student:
         list_students_found = []
-        for element in students_list:
+        for element in self.students_list:
             if element.surname == surname:
                 list_students_found.append(element)
         return list_students_found
@@ -49,7 +50,7 @@ class Group:
     def __str__(self):
         return f"\n{'Students list:'}\n{'-'*30}\n" + \
                f"{'Group:'} {self.group_title} \n{'-' * 30}\n" + \
-               '\n'.join(map(str, students_list)) +'\n'
+               '\n'.join(map(str, self.students_list)) +'\n'
 
 student_01 = Student('Ivan', 'Ivanov', 1, 21)
 student_02 = Student('Petr', 'Ivanov', 2, 22)
@@ -62,24 +63,22 @@ student_08 = Student('Yevgeniya', 'Yevgenova', 8, 28)
 student_09 = Student('Liubov', 'Liubimova', 9, 29)
 student_10 = Student('Liliya', 'Lilova', 10, 30)
 
-students_list = []
-
 group_Python = Group('Python')
-group_Python.add_student(student_01, students_list)
-group_Python.add_student(student_02, students_list)
-group_Python.add_student(student_03, students_list)
-group_Python.add_student(student_04, students_list)
-group_Python.add_student(student_05, students_list)
-group_Python.add_student(student_06, students_list)
-group_Python.add_student(student_07, students_list)
-group_Python.add_student(student_08, students_list)
-group_Python.add_student(student_09, students_list)
+group_Python.add_student(student_01)
+group_Python.add_student(student_02)
+group_Python.add_student(student_03)
+group_Python.add_student(student_04)
+group_Python.add_student(student_05)
+group_Python.add_student(student_06)
+group_Python.add_student(student_07)
+group_Python.add_student(student_08)
+group_Python.add_student(student_09)
 
 student_011 = Student('Maksim', 'Ivanov', 11, 31)
 student_001 = Student('Ivan', 'Ivanov', 1, 21)
 
-group_Python.add_student(student_011, students_list)
-group_Python.removal_student(student_001, students_list)
-print (*group_Python.search_student('Ivanov', students_list))
+group_Python.add_student(student_011)
+group_Python.removal_student(student_001)
+print (*group_Python.search_student('Ivanov'))
 
 print (group_Python)
