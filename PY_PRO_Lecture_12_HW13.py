@@ -40,7 +40,7 @@ class Group:
                 self.students_list.remove(element)
 
     #searching by surname
-    def search_student(self, surname: str) -> Student:
+    def search_student(self, surname: str) -> list:
         list_students_found = []
         for element in self.students_list:
             if element.surname == surname:
