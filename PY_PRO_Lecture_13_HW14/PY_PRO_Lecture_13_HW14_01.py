@@ -4,19 +4,29 @@
 
 # 1. Створіть клас для опису товару. У якості атрибутів товару можете використовувати значення ціни товару,
 # опису товару, габарити товару. Створіть пару екземплярів вашого класу та протестуйте їхню роботу.
+class PriceErrors(Exception):
+    def __init__(self, price):
+        self.price = price
+
+    def __str__(self):
+        if self.price < 0:
+            return 'The price can`t be negative'
+        elif self.price == 0:
+            return 'The price can`t be zero'
+
 class Product:
     def __init__(self, description, price, dimensions):
+        if price <= 0:
+            raise PriceErrors(price)
+
         self.description = description
         self.price = price
         self.dimensions = dimensions
 
-        if self.price <= 0:
-            raise ValueError ('The price can`t be zero or negative')
-
     def __str__(self):
         return f'{self.description} {self.price} {self.dimensions}'
 
-product_1 = Product('Potatoes', -1.00, 'mesh package')
+product_1 = Product('Potatoes', 1.00, 'mesh package')
 product_2 = Product('Tomatoes', 2.00, 'package')
 product_3 = Product('Banana', 3.00, 'brush')
 
