@@ -14,7 +14,23 @@ logger.addHandler(filehandler)
 if __name__ == '__main__':
     logger.info('Started logging')
     logger.warning('Started logging to log')
-    # logger.info('Finished logging')
+
+class GroupLimitError(Exception):
+    def __init__(self, max_students):
+        self.max_students = max_students
+
+    def __str__(self):
+            return f'The list of students cannot be extended' \
+                   f'as it is fully formed up to {self.max_students} students'
+
+class GroupDublicateError(Exception):
+    def __init__(self, student, group_title):
+        self.student = student
+        self.group_title = group_title
+
+    def __str__(self):
+            return f'The student {self.student} is alreday enrolled into ' \
+                   f'group {self.group_title}'
 
 # 1. Створіть клас, що описує людину (створіть метод, що виводить інформацію про людину).
 class Person:
@@ -46,16 +62,13 @@ class Group:
 
     # adding_by_id
     def add_student(self, student: Student):
-        if not isinstance(student, Student):
-            raise TypeError('The student isn`t instance of class Student')
         if len(self.students_list) >= self.max_students:
-            raise ValueError('The list of students cannot be extended as it is fully formed')
-        else:
-            for element in self.students_list:
-                if student.id == element.id:
-                    break
-            self.students_list.append(student)
-            logger.info(f'Student {student} added')
+            raise GroupLimitError(self.max_students)
+        for element in self.students_list:
+            if student.id == element.id:
+                raise GroupDublicateError (student, self.group_title)
+        self.students_list.append(student)
+        logger.info(f'Student {student} is added')
 
     #removal by id
     def removal_student(self, student: Student):
