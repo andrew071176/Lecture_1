@@ -138,5 +138,5 @@ print(x1 != x2)     #__ne__
 print(x1 < x2)      #__lt__
 print(x1 > x2)      #__gt__
 print(x1-x2)        #__sub__
-print(x1-x2)        #__rsub__
+print(x2-x1)        #__rsub__
 print(x1-x2)        #__isub__
