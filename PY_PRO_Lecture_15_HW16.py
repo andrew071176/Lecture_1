@@ -26,14 +26,19 @@ class Rectangle:
 
     def __add__(self, other):
         if isinstance(other, Rectangle):
-            return self.area() + other.area()
+            self.h = float(f'{self.h + (other.h * other.w)/self.w:.2f}')
+            new_rectangle = Rectangle(self.h, self.w)
+            return new_rectangle
         if isinstance(other, int | float):
-            return self.area() + other
+            return self.h * self.w + other
         return NotImplemented
 
-    def __mul__(self, other):
-        if isinstance(other, numbers.Real):
-            return self.area() * other
+    def __mul__(self, n):
+        if isinstance(n, numbers.Real):
+            self.h *= float(f'{n**(1/2):.2f}')
+            self.w *= float(f'{n**(1/2):.2f}')
+            new_rectangle = Rectangle(self.h, self.w)
+            return new_rectangle
         else:
             return NotImplemented
 
@@ -49,7 +54,8 @@ print(rect_1.__lt__(rect_2))
 print(rect_1.__ge__(rect_2))
 print(rect_1.__le__(rect_2))
 print(rect_1.__add__(rect_2))
-print(rect_1.__mul__(3))
+print(rect_1.__add__(10))
+print(rect_2.__mul__(3))
 print()
 
 # 2. Создайте класс «Правильная дробь» и реализуйте методы сравнения, сложения, вычитания и произведения
@@ -116,6 +122,33 @@ class Rational:
         self.d = d
         return self
 
+    def __add__(self, other):
+        if isinstance(other, int):
+            other = Rational(other, 1)
+
+        d = self.d * other.d  # calculation common denominator
+        print ('d=', d)
+        n = d // self.d * self.n + \
+            d // other.d * other.n  # calculation numerator`s sum
+        print ('n =', n)
+
+        k = math.gcd(d, n)
+        d //= k
+        n //= k
+        return Rational(n, d)
+
+    def __mul__(self, other):
+        if isinstance(other, int):
+            other = Rational(other, 1)
+
+        d = self.d * other.d  # calculation common denominator
+        n = self.n * other.n  # calculation common numerator
+
+        k = math.gcd(d, n)
+        d //= k
+        n //= k
+        return Rational(n, d)
+
     def __str__(self):
         sign = '' if self.n * self.d >= 0 else '-'
         n, d = abs(self.n), abs(self.d)
@@ -131,12 +164,14 @@ class Rational:
             return f'{sign}{n // d} {n - n // d * d} / {d}'
         return f'{sign}{n} / {d}'
 
-x1 = Rational(1, 2)
+x1 = Rational(5, 2)
 x2 = Rational(3, 4)
-print(x1 == x2)     #__eq__
-print(x1 != x2)     #__ne__
-print(x1 < x2)      #__lt__
-print(x1 > x2)      #__gt__
-print(x1-x2)        #__sub__
-print(x2-x1)        #__rsub__
-print(x1-x2)        #__isub__
+print(x1 == x2)         #__eq__
+print(x1 != x2)         #__ne__
+print(x1 < x2)          #__lt__
+print(x1 > x2)          #__gt__
+print(x1-x2)            #__sub__
+print(x2-x1)            #__rsub__
+print(x1-x2)            #__isub__
+print(x1+x2)            #__add__
+print(x1*x2)            #__mul__
