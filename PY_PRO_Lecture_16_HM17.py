@@ -46,7 +46,7 @@ class Group:
 
     def __getitem__(self, get_students):
         if isinstance(get_students, int):
-            if 0 >= get_students > 10:
+            if 0 >= get_students > self.max_students:
                 return IndexError
             return self.students_list[get_students]
         if isinstance(get_students, slice):
