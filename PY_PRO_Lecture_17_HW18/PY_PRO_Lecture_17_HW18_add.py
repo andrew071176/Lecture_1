@@ -13,8 +13,6 @@ class Process_text:
                 for item in string.punctuation:
                     line = line.replace(item, ' ')
                 words_counter += len(line.split())
-            f.flush()
-            f.close()
         return words_counter
 
     def sents_counter(self) -> int:
@@ -24,8 +22,6 @@ class Process_text:
                 for item in '.!?':
                     if item in line:
                         sents_counter += 1
-            f.flush()
-            f.close()
         return sents_counter
 
     def lines_counter(self) -> int:
@@ -33,8 +29,6 @@ class Process_text:
                 lines_counter = 0
                 for line in f:
                     lines_counter += 1
-                f.flush()
-                f.close()
             return lines_counter
 
     def letters_counter(self) -> int:
@@ -44,8 +38,6 @@ class Process_text:
                 for letter in line:
                     if letter.isalpha():
                         letters_counter += 1
-            f.flush()
-            f.close()
         return letters_counter
 
     def __str__(self):
@@ -100,38 +92,65 @@ class Order:
                                             f'\tUSD {item[0].price * item[1]:.2f}',
                             zip(self.product_list, self.product_quantity_list)))
 
-        return f"{self.order_name}\n{50*'-'}\n" +\
+        return f"\n{self.order_name}\n{50*'-'}\n" +\
                f"{result}\n{50*'-'}\n" \
                f"Total: USD {self.total_price():.2f}\n"
 
-pizza_monday = Pizza('pizza_monday', 10)
-pizza_tuesday = Pizza('pizza_tuesday', 20)
-pizza_wednesday = Pizza('pizza_wednesday', 30)
-pizza_thursday = Pizza('pizza_thursday', 40)
-pizza_friday = Pizza('pizza_friday', 50)
+def main():
+    dict_menu = {1: ['pizza_monday', 10],
+                 2: ['pizza_tuesday', 20],
+                 3: ['pizza_wednesday', 30],
+                 4: ['pizza_thursday', 40],
+                 5: ['pizza_friday', 50],
+                 6: ['ingr_1', 1],
+                 7: ['ingr_2', 2],
+                 8: ['ingr_3', 3],
+                 9: ['ingr_4', 4],
+                 10: ['ingr_5', 5]}
 
-ingr_1 = Ingrs('ingr_1', 1)
-ingr_2 = Ingrs('ingr_2', 2)
-ingr_3 = Ingrs('ingr_3', 3)
-ingr_4 = Ingrs('ingr_4', 4)
-ingr_5 = Ingrs('ingr_5', 5)
+    order_Pizza = Order('Pizza|Ingridients')
+    marker = 'yes'
+    while marker == 'yes':
 
-order_1 = Order('Order_1')
-order_1.add_product(pizza_monday)
-order_1.add_product(pizza_monday)
-order_1.add_product(ingr_1)
-order_1.add_product(ingr_1)
-order_1.add_product(ingr_1)
-order_1.add_product(ingr_5)
-order_1.add_product(ingr_5)
-print (order_1)
+        print('\nMenu:')
+        for k, v in dict_menu.items():
+            if len (v[0]) > 6:
+                print(k, '\t', v[0], ': \t', f'USD {v[1]:.2f}')
+            else:
+                print(k, '\t', v[0], ':\t\t\t', f'USD {v[1]:.2f}')
 
-order_2 = Order('Order_2')
-order_2.add_product(pizza_wednesday)
-order_2.add_product(pizza_wednesday)
-order_2.add_product(ingr_3, 5)
-order_2.add_product(ingr_4)
-print (order_2)
+        choice = 0
+        while choice not in dict_menu:
+            try:
+                choice = int(input('\nPlease, choose the option: '))
+            except ValueError:
+                print('\nYour`ve entered incorrect data')
+            else:
+                if not 1 <= choice <= 10:
+                    print('\nYour`ve entered choice out of options')
+
+        quantity = 0
+        while not quantity:
+            try:
+                quantity = abs(int(input('\nPlease, enter the quantity of the chosen product: ')))
+            except ValueError:
+                print('\nYour`ve entered incorrect data')
+            else:
+                if quantity > 100:
+                    print('\nThe entered quantity isn`t available')
+
+        if 1 <= choice <= 5:
+            product = Pizza(dict_menu[choice][0], dict_menu[choice][1])
+        else:
+            product = Ingrs(dict_menu[choice][0], dict_menu[choice][1])
+
+        order_Pizza.add_product(product, quantity)
+
+        marker = (input('\nWould you like to make your choice one more time? Yes or No: ')).lower()
+
+    print (order_Pizza)
+
+main()
 
 # 3. Write a program for selling tickets to IT-events. Each ticket has a unique number and a price.
 # There are four types of tickets: regular ticket, advance ticket (purchased 60 or more days
@@ -147,22 +166,13 @@ print (order_2)
 # Для останньої задачі реалізувати серіалізацію / десеріалізацію у форматі json проданих квитків.
 import json
 class Ticket:
-    def __init__(self, number: int, type: str = 'regular', price: float = 100):
+    def __init__(self, number: int, type: str = 'regular', price: float = None):
         self.number = number
         self.type = type
-        if self.type == 'regular':
-            self.price = price
-        elif self.type == 'late':
-            self.price = price * 0.9
-        elif self.type == 'advance':
-            self.price = price * 0.6
-        elif self.type == 'student':
-            self.price = price * 0.5
-        else:
-            raise '\nTicket type error'
+        self.price = price
 
     def __str__(self):
-        return f"№ {self.number}\tType '{self.type}' \tUSD{self.price}"
+        return f"№ {self.number}\tType '{self.type}' \tUSD{self.price:.2f}"
 
 class Order:
     def __init__(self, order_name):
@@ -194,8 +204,8 @@ class Order:
                                             f'\tUSD {item[0].price * item[1]:.2f}',
                             zip(self.tickets_list, self.ticket_quantity_list)))
 
-        return f"{self.order_name}\n{50*'-'}\n" +\
-               f"{result}\n{50*'-'}\n" \
+        return f"{self.order_name}\n{60*'-'}\n" +\
+               f"{result}\n{60*'-'}\n" \
                f"Total: USD {self.total_price():.2f}\n"
 
 def main():
@@ -263,7 +273,7 @@ def main():
                             if not 1 <= choice_type <= 4:
                                 print('\nYour`ve entered choice out of options')
 
-                    ticket = Ticket(choice_type, dict_types[choice_type])
+                    ticket = Ticket(choice_type, dict_types[choice_type], dict_prices[dict_types[choice_type]])
                     order.add_ticket(ticket)
 
                     if choice_type not in dict_order:
@@ -303,15 +313,11 @@ def main():
                         str = json.dumps(dict_order)
                         f.write(str)
                         print ('Data JSON serialization is successfully finished')
-                        f.flush()
-                        f.close()
 
             if choice_option == 4:
                 with open('tickets_order.json', 'r') as f:
                     data = json.load(f)
                     print('Data JSON deserialization is successfully finished:\n', data)
-                    f.flush()
-                    f.close()
 
             marker = (input('\nWould you like to make your choice one more time? Yes or No: ')).lower()
             choice_option = 0
