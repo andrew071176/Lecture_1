@@ -18,10 +18,10 @@ for _ in range (5):
 
 # 2. Реалізуйте свій аналог генераторної функції range().
 def my_range(start: int, stop = None, step = None):
-    if stop == None:
+    if not stop:
         stop = start
         start = 0
-    if step == None:
+    if not step:
         step = 1
     next_step = start
     while next_step <= stop:
@@ -56,16 +56,5 @@ print (next(g))
 
 # 4. Напишіть генераторний вираз для заповнення списку. Список повинен бути заповнений кубами чисел
 # від 2 до вказаної вами величини.
-def list_degree_3 (limit: int):
-    num = 2
-    list_1 = []
-    while num**3 <= limit:
-        list_1.append(num**3)
-        yield list_1
-        num += 1
-    return
-
-g = list_degree_3(100)
-print (next(g))
-print (next(g))
-print (next(g))
+list_degree_3 = (num**3 for num in range (2, 10))
+print (*list_degree_3)
