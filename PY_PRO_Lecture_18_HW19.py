@@ -4,20 +4,19 @@
 #  кількість членів, що видаються послідовностю.
 #  Генератор повинен зупинити свою роботу або по досягненню n-го члена, або при передачі команди
 #  на завершення.
-def f (start: int = 1, quantity: int = 10) -> int:
+def users_f(item):
+    return item**2
+
+def gen_f (start: int = 1, counter: int = 1, users_f: object = None) -> int:
     iter = 1
-    while iter <= quantity:
-        yield start
-        start *= 2          #user`s function
+    while iter < counter:
+        yield users_f(start)
+        start += 1
         iter += 1
     return
 
-g = f()
-n = 5
-for _ in range (n):         #reaching n-number
-    value = next(g)
+for value in gen_f (1, 10, users_f):
     print (value)
-g.close()                   #sending command to end
 
 # 2. Використовуючи замикання, реалізуйте такий прийом програмування як Мемоізація -
 # https://en.wikipedia.org/wiki/Memoization .
