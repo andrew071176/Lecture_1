@@ -1,29 +1,32 @@
 # 1. Создайте декоратор, который будет подсчитывать, сколько раз была вызвана
 # декорируемая функция.
 def counter_f(f: 'function') -> int:
-    counter = 0
     def wrapper(*args, **kwargs):
-        nonlocal counter
-        if f(*args, **kwargs) or not f(*args, **kwargs):
-            counter += 1
-        return counter
+        wrapper.counter += 1
+        return f(*args, **kwargs)
+    wrapper.counter = 0
     return wrapper
 
 @counter_f
 def sum(x: int, y: int) -> int:
     return x + y
 
-print ([sum (i, i) for i in range (10)][-1])
+@counter_f
+def sub(x: int, y: int) -> int:
+    return x - y
+
+[sum (i, i) for i in range (10)][-1]
+[sub (i, i) for i in range (5)][-1]
+print ('sum.counter = ', sum.counter)
+print ('sub.counter = ', sub.counter)
 
 # 2. Создайте декоратор, который зарегистрирует декорируемую функцию в списке функций, для обработки
 # последовательности.
-def register_f(f: 'function', ff_list: list = []) -> list:
-    def wrapper(*args, **kwargs):
-        f(*args, **kwargs)
-        if f not in ff_list:
-            ff_list.append(f)
-        return ff_list
-    return wrapper
+ff_list = []
+def register_f(f: 'function') -> list:
+    if f not in ff_list:
+        ff_list.append(f)
+    return f
 
 @register_f
 def sum(x: int, y: int) -> int:
@@ -37,15 +40,19 @@ print (sum(1, 2))
 print (sum(3, 4))
 print (sub(5, 6))
 print (sub(7, 8))
+print (ff_list)
 
 # 3. Предположим, в классе определен метод __str__, который возвращает строку на основании класса.
 # Создайте такой декоратор для этого метода, чтобы полученная строка сохранялась в текстовый файл,
 # имя которого совпадает с именем класса, метод которого вы декорировали.
 def Decorator_load_str_to_text_file(method: 'method') -> 'file':
-    def wrapper(*args):
-        file_name = method.__str__()[10:-31]
-        with open(f'{file_name}.txt', 'w') as f:
-            return f.write(method(*args))
+    def wrapper(*args, **kwargs):
+        file_name = f"{method.__qualname__.split('.')[0]}.txt"
+        print (file_name)
+        result = method(*args, **kwargs)
+        with open(file_name, 'a') as f:
+            f.write(f'{result}\n')
+        return result
     return wrapper
 
 class ABC:
@@ -58,7 +65,9 @@ class ABC:
         return f'{self.x + self.y}'
 
 a = ABC(10, 10)
-a.__str__()
+print (a)
+b = ABC(30, 40)
+print (b)
 
 # 4. Создайте декоратор с параметрами для проведения хронометража работы той или иной функции.
 # Параметрами должны выступать то, сколько раз нужно запустить декорируемую функцию и в какой файл
@@ -138,4 +147,3 @@ class Box:
 a = Box(5, 10)
 print(a.boxes_volume)
 print(a.calc_boxes_volume(20, 30))
-
