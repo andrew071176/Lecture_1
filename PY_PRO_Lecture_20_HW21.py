@@ -1,24 +1,33 @@
 # 1. Создайте дескриптор, который будет делать поля класса управляемые им доступными только
 # для чтения.
 class Descriptor_read_only:
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, attr_name):
+        self.attr = attr_name
 
-    def __get__(self, instance_self, instance_class):
-        return self.value
+    def __get__(self, instance, owner):
+        return instance.__dict__.get(self.attr)
 
-    def __set__(self, instance_self, value):
-        raise AttributeError('field is read-only')
+    def __set__(self, instance, value):
+        if self.attr not in instance.__dict__:
+            instance.__dict__[self.attr] = value
+        else:
+            raise AttributeError('field is read-only')
 
 class A:
-    field = Descriptor_read_only(10)
+    def __init__ (self, a, b, field = '10'):
+        self.a = a
+        self.b = b
+        self.field = field
+    field = Descriptor_read_only('field')
 
     def __str__(self):
-        return f'{self.field}'
+        return f'{self.a} {self.b} {self.field}'
 
-a = A()
-print(a.field)
-a.field = 20
+a1 = A(1, 2)
+a2 = A(3, 4, 100)
+print(a1.field)
+print(a2.field)
+a1.field = 1000
 
 # 2. Реализуйте функционал, который будет запрещать установку полей класса любыми значениями, кроме целых
 # чисел. Т.е., если тому или иному полю попытаться присвоить, например, строку, то должно быть возбужденно
