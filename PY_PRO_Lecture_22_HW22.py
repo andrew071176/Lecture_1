@@ -2,7 +2,7 @@
 # літери R, за якою слідує одна або більше літер b, за якою одна r. Враховувати верхній та нижній регістр.
 import re
 string = 'Rbbbbbrrrr RRRbr RBr'
-pattern = r'Rb*r'
+pattern = r'Rb+r'
 match = re.findall(pattern, string)
 if match:
     print(match)
@@ -34,19 +34,19 @@ print (validation_bank_card_number(string3))
 # -Символ "-" не може повторюватися.
 import re
 def validation_email(string):
-    pattern = r'(^[a-zA-Z0-9]+' \
-              r'([-]{,1})' \
-              r'[a-zA-Z0-9_]+' \
-              r'([-]{,1})' \
-              r'@[a-zA-Z0-9-_]+' \
-              r'.[a-zA-Z0-9-]+$)'
+    pattern = r'(^[a-zA-Z0-9.]+' \
+              r'-?' \
+              r'[a-zA-Z0-9_ .]+' \
+              r'-?' \
+              r'@[a-zA-Z0-9-_.]+' \
+              r'[a-zA-Z0-9-.]+$)'
     match = re.match(pattern, string)
     if match:
         return True
     else:
         return False
 
-string1 = 'aBCd_123-@gmail.com'
+string1 = '.aBCd_.123-@gmail.com'
 string2 = 'aBCd-_123@gmail.com'
 string3 = 'aBCd123--@gmail.com'
 string4 = '-aBCd123-@gmail.com'
