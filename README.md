@@ -2,7 +2,7 @@ This open program code is intended for students, applicants and all those who ar
 
 This resource contains solutions to problems on the following topics:
 
-Python Start
+PYTHON START
 • Local and global variables.
 • Integer, object and complex variables.
 • Mathematical operations with variables.
@@ -19,7 +19,7 @@ Python Start
 • Function as a variable.
 • Reading and writing data to a file. Move through the file.
 
-Python Pro
+PYTHON PRO
 • Creating a class, constructors, fields and methods.
 • Inheritance in Python.
 • Work with exceptional situations.
