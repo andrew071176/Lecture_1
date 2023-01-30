@@ -2,7 +2,7 @@
 # літери R, за якою слідує одна або більше літер b, за якою одна r. Враховувати верхній та нижній регістр.
 import re
 string = 'Rbbbbbrrrr RRRbr RBr'
-pattern = r'Rb+r'
+pattern = r'^Rb+r$'
 match = re.findall(pattern, string)
 if match:
     print(match)
@@ -12,7 +12,7 @@ else:
 # 2. Напишіть функцію, яка виконує валідацію номера банківської картки (9999-9999-9999-9999).
 import re
 def validation_bank_card_number(string):
-    pattern = r'(\d{4}-){3}\d{4}'
+    pattern = r'(^\d{4}[ -]?){3}\d{4}$'
     match = re.match(pattern, string)
     if match:
         return True
@@ -34,12 +34,11 @@ print (validation_bank_card_number(string3))
 # -Символ "-" не може повторюватися.
 import re
 def validation_email(string):
-    pattern = r'(^[a-zA-Z0-9.]+' \
-              r'-?' \
-              r'[a-zA-Z0-9_ .]+' \
-              r'-?' \
-              r'@[a-zA-Z0-9-_.]+' \
-              r'[a-zA-Z0-9-.]+$)'
+    pattern = r'[a-zA-Z0-9]' \
+              r'(-?[a-zA-Z0-9_\.]){1,63}' \
+              r'@' \
+              r'(-?[a-zA-Z0-9])+' \
+              r'(\.[a-zA-Z0-9]+)*'
     match = re.match(pattern, string)
     if match:
         return True
@@ -59,7 +58,7 @@ print (validation_email(string4))
 # що містить лише літери та цифри.
 import re
 def validation_login(string):
-    pattern = r'[\d\w]{2,10}'
+    pattern = r'^[a-zA-Z0-9]{2,10}$'
     match1 = re.match(pattern, string)
     if match1 and len(match1.group()) == len (string):
         return True
