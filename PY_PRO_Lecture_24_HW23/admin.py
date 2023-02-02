@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from .models import About, Who_us, Menu, Specials, Events
 
